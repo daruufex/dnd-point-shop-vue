@@ -1,0 +1,22 @@
+<script setup>
+import StatItem from './StatItem.vue'
+
+const statNames = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
+</script>
+
+<template>
+  <table className="w-full text-md md:text-xl">
+    <thead>
+      <tr class="border-b-2 border-b-emerald-700">
+        <th className="p-2 md:p-3 text-left">Attribute</th>
+        <th className="p-2 md:p-3 text-center">Ability score</th>
+        <th className="p-2 md:p-3 text-center">Ancestry bonus</th>
+        <th className="p-2 md:p-3 text-center">Final score</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <StatItem v-for="stat in statNames" :key="stat" :name="stat" />
+    </tbody>
+  </table>
+</template>
