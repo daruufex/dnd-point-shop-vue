@@ -1,5 +1,13 @@
 <script setup>
 defineProps(['ancestryBonus'])
+
+function handleInput(event) {
+  const newValue = event.target.value;
+  
+  if (!isNaN(newValue) || newValue === '') {
+    $emit('change', newValue === '' ? 0 : Number(newValue));
+  }
+}
 </script>
 
 <template>
@@ -9,7 +17,7 @@ defineProps(['ancestryBonus'])
       class="bg-emerald-950 p-2 rounded w-10 text-center"
       type="text"
       :value="ancestryBonus"
-      @input="$emit('change', Number($event.target.value))"
+      @input="handleInput"
     />
   </td>
 </template>
