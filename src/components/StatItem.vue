@@ -3,6 +3,7 @@ import { ref, inject, computed } from 'vue'
 import defaults from '../defaults'
 
 import StatControls from './StatControls.vue'
+import AncestryBonus from './AncestryBonus.vue'
 
 defineProps(['name'])
 
@@ -23,23 +24,6 @@ function decreaseScore() {
   setPoints(points.value + defaults.scoreCosts[score.value])
   score.value--
 }
-
-function updateAncestryBonus(event) {
-  const newValue = event.target.value
-  if (isNaN(Number(newValue))) {
-    ancestryBonus.value = 0
-    return
-  }
-  if (newValue.length > 1) {
-    ancestryBonus.value = newValue.slice(0, 1)
-    return
-  }
-  ancestryBonus.value = newValue
-}
-
-function ancestryBonusFocusOut(event) {
-  if (event.target.value === '') ancestryBonus.value = 0
-}
 </script>
 
 <template>
@@ -47,17 +31,7 @@ function ancestryBonusFocusOut(event) {
     <td class="p-2 md:p-3">{{ name }}</td>
 
     <StatControls :score="score" @increaseScore="increaseScore" @decreaseScore="decreaseScore" />
-
-    <td class="p-3 text-center">
-      +&nbsp;
-      <input
-        class="bg-emerald-950 p-2 rounded w-10 text-center"
-        type="text"
-        :value="ancestryBonus"
-        @input.prevent="updateAncestryBonus"
-        @focusout="ancestryBonusFocusOut"
-      />
-    </td>
+    <AncestryBonus v-model="ancestryBonus" />
 
     <td class="p-3 text-center">
       {{ finalScore }} ({{ modifier > 0 ? `+${modifier}` : modifier }})
