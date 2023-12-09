@@ -12,12 +12,11 @@ const ancestryBonus = ref(0)
 
 const { points, setPoints } = inject('points')
 
-const finalScore = computed(() => score.value + ancestryBonus.value)
+const finalScore = computed(() => score.value + Number(ancestryBonus.value))
 const modifier = computed(() => Math.floor((finalScore.value - 10) / 2))
 
-function changeAncestryBonus(newValue) {
-  if (isNaN(newValue)) return
-  ancestryBonus.value = newValue > 9 ? 0 : newValue
+function updateAncestryBonus(newValue) {
+  ancestryBonus.value = newValue
 }
 
 function increaseScore() {
@@ -36,7 +35,7 @@ function decreaseScore() {
     <td class="p-2 md:p-3">{{ name }}</td>
 
     <StatControls :score="score" @increaseScore="increaseScore" @decreaseScore="decreaseScore" />
-    <AncestryBonus :ancestryBonus="ancestryBonus" @change="changeAncestryBonus" />
+    <AncestryBonus :value="ancestryBonus" @updateAncestryBonus="updateAncestryBonus" />
 
     <td class="p-3 text-center">
       {{ finalScore }} ({{ modifier > 0 ? `+${modifier}` : modifier }})
