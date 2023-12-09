@@ -5,7 +5,7 @@ const statNames = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wis
 </script>
 
 <template>
-  <table classe="w-full text-md md:text-xl">
+  <table class="w-full text-md md:text-xl">
     <thead>
       <tr class="border-b-2 border-b-emerald-700">
         <th class="p-2 md:p-3 text-left">Attribute</th>
