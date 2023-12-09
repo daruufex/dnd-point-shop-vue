@@ -3,7 +3,6 @@ import { ref, inject, computed } from 'vue'
 import defaults from '../defaults'
 
 import StatControls from './StatControls.vue'
-import AncestryBonus from './AncestryBonus.vue'
 
 defineProps(['name'])
 
