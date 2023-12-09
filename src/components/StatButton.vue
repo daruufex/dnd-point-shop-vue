@@ -1,5 +1,5 @@
 <script setup>
-defineProps(['disbled'])
+defineProps(['disabled'])
 
 const style =
   'w-7 mr-1 border rounded border-emerald-700 ' +
