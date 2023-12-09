@@ -54,7 +54,7 @@ function ancestryBonusFocusOut(event) {
         class="bg-emerald-950 p-2 rounded w-10 text-center"
         type="text"
         :value="ancestryBonus"
-        @input="updateAncestryBonus"
+        @input.prevent="updateAncestryBonus"
         @focusout="ancestryBonusFocusOut"
       />
     </td>
