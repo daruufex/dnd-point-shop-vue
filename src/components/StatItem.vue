@@ -16,8 +16,11 @@ const finalScore = computed(() => score.value + ancestryBonus.value)
 const modifier = computed(() => Math.floor((finalScore.value - 10) / 2))
 
 function changeAncestryBonus(newValue) {
-  if (isNaN(newValue)) return
-  ancestryBonus.value = newValue > 9 ? 0 : newValue
+  if (`${newValue}`.length > 1) {
+    ancestryBonus.value = Number(`${newValue}`.slice(0, 1))
+    return
+  }
+  ancestryBonus.value = newValue
 }
 
 function increaseScore() {
